@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block titulo %}Perfil - IBK{% endblock %}
+{% block conteudo %}
+<h1 class="text-2xl font-bold mb-6">Meu Perfil</h1>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="bg-white rounded-lg shadow p-6">
+        <h2 class="text-lg font-semibold mb-4">Dados da Conta</h2>
+        <p class="mb-2"><span class="text-slate-500">Email:</span> {{ current_user.email }}</p>
+        <p class="mb-2"><span class="text-slate-500">Perfil:</span> {{ current_user.tipo }}</p>
+        <p class="mb-2"><span class="text-slate-500">CPF:</span> {{ current_user.cpf }}</p>
+        {% if current_user.crm %}
+        <p class="mb-2"><span class="text-slate-500">CRM:</span> {{ current_user.crm }}</p>
+        {% endif %}
+        {% if current_user.especialidade %}
+        <p class="mb-2"><span class="text-slate-500">Especialidade:</span> {{ current_user.especialidade }}</p>
+        {% endif %}
+    </div>
+
+    <div class="bg-white rounded-lg shadow p-6">
+        <h2 class="text-lg font-semibold mb-4">Editar Dados</h2>
+        <form method="POST" action="{{ url_for('auth.perfil') }}">
+            <label class="block text-sm font-medium mb-1">Nome</label>
+            <input type="text" name="nome" value="{{ current_user.nome }}" required class="w-full border border-slate-300 rounded px-3 py-2 mb-4">
+
+            <p class="text-sm text-slate-500 mb-2">Preencha abaixo apenas se quiser trocar a senha.</p>
+            <label class="block text-sm font-medium mb-1">Senha Atual</label>
+            <input type="password" name="senha_atual" class="w-full border border-slate-300 rounded px-3 py-2 mb-4">
+            <label class="block text-sm font-medium mb-1">Nova Senha</label>
+            <input type="password" name="nova_senha" class="w-full border border-slate-300 rounded px-3 py-2 mb-6">
+
+            <button type="submit" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-600">Salvar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

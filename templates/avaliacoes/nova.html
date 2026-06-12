@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block titulo %}Avaliar Paciente - IBK{% endblock %}
+{% block conteudo %}
+<h1 class="text-2xl font-bold mb-1">Avaliacao de {{ paciente.nome }}</h1>
+<p class="text-slate-500 mb-6">Sexo: {% if paciente.sexo == 'M' %}Masculino (limiar 0.56){% else %}Feminino (limiar 0.55){% endif %}</p>
+
+<form method="POST" action="{{ url_for('avaliacoes.nova', paciente_id=paciente.id) }}">
+    <div class="bg-white rounded-lg shadow p-6 mb-6">
+        <h2 class="text-lg font-semibold mb-4">Marque os sintomas presentes</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {% for sintoma in sintomas %}
+            <label class="flex items-start gap-3 border border-slate-200 rounded p-3 hover:bg-slate-50 cursor-pointer">
+                <input type="checkbox" name="sintomas" value="{{ sintoma.id }}" class="mt-1 h-5 w-5">
+                <span>
+                    <span class="font-medium">{{ sintoma.nome }}</span>
+                    <span class="block text-sm text-slate-500">{{ sintoma.descricao }}</span>
+                </span>
+            </label>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="bg-white rounded-lg shadow p-6 mb-6">
+        <label class="block text-sm font-medium mb-1">Observacoes</label>
+        <textarea name="observacoes" rows="3" class="w-full border border-slate-300 rounded px-3 py-2"></textarea>
+    </div>
+
+    <div class="flex gap-3">
+        <button type="submit" class="bg-green-700 text-white px-5 py-2 rounded hover:bg-green-600 font-semibold">Calcular e Salvar</button>
+        <a href="{{ url_for('avaliacoes.selecionar') }}" class="bg-slate-200 text-slate-700 px-4 py-2 rounded hover:bg-slate-300">Cancelar</a>
+    </div>
+</form>
+{% endblock %}

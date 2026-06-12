@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}IBK - Avaliacao X Fragil{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+<body class="bg-slate-100 min-h-screen text-slate-800">
+{% if current_user.is_authenticated %}
+<nav class="bg-blue-800 text-white shadow no-print">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+            <div class="flex items-center gap-3">
+                <img src="{{ url_for('static', filename='images/LOGO_IBK.webp') }}" alt="IBK" class="h-10 w-10 rounded-full bg-white object-contain p-1">
+                <span class="font-semibold text-lg hidden sm:inline">Instituto Buko Kaesemodel</span>
+            </div>
+            <button onclick="document.getElementById('menu').classList.toggle('hidden')" class="md:hidden border border-blue-300 rounded px-3 py-1">Menu</button>
+            <div id="menu" class="hidden md:flex md:items-center gap-4 absolute md:static top-16 left-0 right-0 bg-blue-800 md:bg-transparent flex-col md:flex-row p-4 md:p-0 z-10">
+                <a href="{{ url_for('dashboard') }}" class="hover:text-blue-200">Inicio</a>
+                {% if current_user.tipo in ['admin', 'profissional'] %}
+                <a href="{{ url_for('pacientes.listar') }}" class="hover:text-blue-200">Pacientes</a>
+                <a href="{{ url_for('avaliacoes.listar') }}" class="hover:text-blue-200">Avaliacoes</a>
+                {% endif %}
+                <a href="{{ url_for('relatorios.listar') }}" class="hover:text-blue-200">Relatorios</a>
+                {% if current_user.tipo == 'admin' %}
+                <a href="{{ url_for('sintomas.listar') }}" class="hover:text-blue-200">Sintomas</a>
+                <a href="{{ url_for('usuarios.listar') }}" class="hover:text-blue-200">Usuarios</a>
+                {% endif %}
+                <a href="{{ url_for('auth.perfil') }}" class="hover:text-blue-200">Perfil</a>
+                <a href="{{ url_for('auth.logout') }}" class="bg-blue-600 px-3 py-1 rounded hover:bg-blue-500 text-center">Sair</a>
+            </div>
+        </div>
+    </div>
+</nav>
+{% endif %}
+
+<main class="max-w-6xl mx-auto px-4 py-6">
+    {% with mensagens = get_flashed_messages(with_categories=true) %}
+        {% if mensagens %}
+            {% for categoria, mensagem in mensagens %}
+            <div class="no-print mb-3 px-4 py-3 rounded border
+                {% if categoria == 'sucesso' %}bg-green-100 text-green-800 border-green-300
+                {% elif categoria == 'erro' %}bg-red-100 text-red-800 border-red-300
+                {% else %}bg-yellow-100 text-yellow-800 border-yellow-300{% endif %}">
+                {{ mensagem }}
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    {% block conteudo %}{% endblock %}
+</main>
+</body>
+</html>

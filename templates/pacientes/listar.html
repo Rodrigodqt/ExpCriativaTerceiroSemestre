@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block titulo %}Pacientes - IBK{% endblock %}
+{% block conteudo %}
+<div class="flex items-center justify-between mb-6">
+    <h1 class="text-2xl font-bold">Pacientes</h1>
+    <a href="{{ url_for('pacientes.novo') }}" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-600">Novo Paciente</a>
+</div>
+
+<div class="bg-white rounded-lg shadow overflow-x-auto">
+    <table class="w-full text-sm">
+        <thead class="bg-slate-100 text-left">
+            <tr>
+                <th class="px-4 py-2">Nome</th>
+                <th class="px-4 py-2">Sexo</th>
+                <th class="px-4 py-2">CPF</th>
+                <th class="px-4 py-2">Contato</th>
+                <th class="px-4 py-2">Acoes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for paciente in pacientes %}
+            <tr class="border-t">
+                <td class="px-4 py-2">{{ paciente.nome }}</td>
+                <td class="px-4 py-2">{{ paciente.sexo }}</td>
+                <td class="px-4 py-2">{{ paciente.cpf }}</td>
+                <td class="px-4 py-2">{{ paciente.contato }}</td>
+                <td class="px-4 py-2">
+                    <div class="flex flex-wrap gap-2">
+                        <a href="{{ url_for('pacientes.detalhes', paciente_id=paciente.id) }}" class="text-blue-700 hover:underline">Detalhes</a>
+                        <a href="{{ url_for('avaliacoes.nova', paciente_id=paciente.id) }}" class="text-green-700 hover:underline">Avaliar</a>
+                        <a href="{{ url_for('pacientes.editar', paciente_id=paciente.id) }}" class="text-slate-700 hover:underline">Editar</a>
+                        <form method="POST" action="{{ url_for('pacientes.excluir', paciente_id=paciente.id) }}" onsubmit="return confirm('Deseja remover este paciente?');">
+                            <button type="submit" class="text-red-700 hover:underline">Excluir</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {% else %}
+            <tr><td colspan="5" class="px-4 py-4 text-slate-500">Nenhum paciente cadastrado.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
