@@ -63,6 +63,32 @@
     </table>
 </div>
 
+<h2 class="text-lg font-semibold mb-3 mt-8">Distribuicao dos Resultados</h2>
+<div class="bg-white rounded-lg shadow p-5 max-w-sm">
+    <canvas id="graficoResultados"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const elementoGrafico = document.getElementById('graficoResultados');
+new Chart(elementoGrafico, {
+    type: 'doughnut',
+    data: {
+        labels: ['Indicado', 'Sem Indicacao'],
+        datasets: [{
+            data: [{{ dados.indicados }}, {{ dados.sem_indicacao }}],
+            backgroundColor: ['#dc2626', '#16a34a']
+        }]
+    },
+    options: {
+        plugins: {
+            legend: {
+                position: 'bottom'
+            }
+        }
+    }
+});
+</script>
+
 {% elif current_user.tipo == 'profissional' %}
 <div class="grid grid-cols-2 gap-4 mb-8">
     <div class="bg-white rounded-lg shadow p-5">
@@ -112,6 +138,32 @@
         </tbody>
     </table>
 </div>
+
+<h2 class="text-lg font-semibold mb-3 mt-8">Distribuicao dos Resultados</h2>
+<div class="bg-white rounded-lg shadow p-5 max-w-sm">
+    <canvas id="graficoResultados"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const elementoGrafico = document.getElementById('graficoResultados');
+new Chart(elementoGrafico, {
+    type: 'doughnut',
+    data: {
+        labels: ['Indicado', 'Sem Indicacao'],
+        datasets: [{
+            data: [{{ dados.indicados }}, {{ dados.sem_indicacao }}],
+            backgroundColor: ['#dc2626', '#16a34a']
+        }]
+    },
+    options: {
+        plugins: {
+            legend: {
+                position: 'bottom'
+            }
+        }
+    }
+});
+</script>
 
 {% else %}
 <h2 class="text-lg font-semibold mb-3">Meus Resultados</h2>

@@ -5,6 +5,28 @@
     {% if current_user.tipo == 'paciente' %}Meus Resultados{% else %}Relatorios de Avaliacao{% endif %}
 </h1>
 
+<form method="GET" action="{{ url_for('relatorios.listar') }}" class="mb-4 flex flex-wrap gap-2 items-end">
+    {% if current_user.tipo == 'admin' %}
+    <div>
+        <label class="block text-sm font-medium mb-1">Profissional</label>
+        <select name="usuario_id" class="border border-slate-300 rounded px-3 py-2">
+            <option value="">Todos</option>
+            {% for prof in profissionais %}
+            <option value="{{ prof.id }}" {% if usuario_filtro == prof.id|string %}selected{% endif %}>{{ prof.nome }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    {% endif %}
+    <div>
+        <label class="block text-sm font-medium mb-1">Data</label>
+        <input type="date" name="data" value="{{ data_filtro or '' }}" class="border border-slate-300 rounded px-3 py-2">
+    </div>
+    <button type="submit" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-600">Filtrar</button>
+    {% if data_filtro or usuario_filtro %}
+    <a href="{{ url_for('relatorios.listar') }}" class="bg-slate-200 text-slate-700 px-4 py-2 rounded hover:bg-slate-300">Limpar</a>
+    {% endif %}
+</form>
+
 <div class="bg-white rounded-lg shadow overflow-x-auto">
     <table class="w-full text-sm">
         <thead class="bg-slate-100 text-left">

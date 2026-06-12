@@ -21,11 +21,15 @@ def converter_data(texto):
 def listar():
     if current_user.tipo == 'paciente':
         abort(403)
+    busca = request.args.get('busca')
     if current_user.tipo == 'admin':
-        pacientes = Paciente.query.filter_by(ativo=True).order_by(Paciente.nome).all()
+        consulta = Paciente.query.filter_by(ativo=True)
     else:
-        pacientes = Paciente.query.filter_by(ativo=True, usuario_id=current_user.id).order_by(Paciente.nome).all()
-    return render_template('pacientes/listar.html', pacientes=pacientes)
+        consulta = Paciente.query.filter_by(ativo=True, usuario_id=current_user.id)
+    if busca:
+        consulta = consulta.filter(db.or_(Paciente.nome.like('%' + busca + '%'), Paciente.cpf.like('%' + busca + '%')))
+    pacientes = consulta.order_by(Paciente.nome).all()
+    return render_template('pacientes/listar.html', pacientes=pacientes, busca=busca)
 
 
 @pacientes_bp.route('/novo', methods=['GET', 'POST'])

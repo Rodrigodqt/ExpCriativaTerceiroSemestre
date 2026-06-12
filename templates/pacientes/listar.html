@@ -6,6 +6,14 @@
     <a href="{{ url_for('pacientes.novo') }}" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-600">Novo Paciente</a>
 </div>
 
+<form method="GET" action="{{ url_for('pacientes.listar') }}" class="mb-4 flex flex-wrap gap-2">
+    <input type="text" name="busca" value="{{ busca or '' }}" placeholder="Buscar por nome ou CPF" class="border border-slate-300 rounded px-3 py-2 w-full sm:max-w-xs">
+    <button type="submit" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-600">Buscar</button>
+    {% if busca %}
+    <a href="{{ url_for('pacientes.listar') }}" class="bg-slate-200 text-slate-700 px-4 py-2 rounded hover:bg-slate-300">Limpar</a>
+    {% endif %}
+</form>
+
 <div class="bg-white rounded-lg shadow overflow-x-auto">
     <table class="w-full text-sm">
         <thead class="bg-slate-100 text-left">

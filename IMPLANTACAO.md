@@ -6,7 +6,7 @@ Este documento descreve como implantar e configurar a Plataforma de Avaliacao da
 
 - Docker e Docker Compose instalados.
 - Porta 5000 livre para a aplicacao web.
-- Porta 3306 livre para o banco MySQL.
+- Porta 3307 livre para acesso externo ao banco MySQL (opcional).
 
 Para rodar sem Docker, e necessario ter Python 3.11 e um servidor MySQL 8.0 instalados.
 

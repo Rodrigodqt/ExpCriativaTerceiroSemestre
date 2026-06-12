@@ -94,10 +94,14 @@ def dashboard():
         dados['total_pacientes'] = Paciente.query.filter_by(ativo=True).count()
         dados['total_sintomas'] = Sintoma.query.filter_by(ativo=True).count()
         dados['total_avaliacoes'] = Avaliacao.query.count()
+        dados['indicados'] = Avaliacao.query.filter_by(resultado='Indicado para Teste Genetico').count()
+        dados['sem_indicacao'] = Avaliacao.query.filter_by(resultado='Sem Indicacao para Teste Genetico').count()
         dados['ultimas_avaliacoes'] = Avaliacao.query.order_by(Avaliacao.id.desc()).limit(5).all()
     elif current_user.tipo == 'profissional':
         dados['total_pacientes'] = Paciente.query.filter_by(usuario_id=current_user.id, ativo=True).count()
         dados['total_avaliacoes'] = Avaliacao.query.filter_by(usuario_id=current_user.id).count()
+        dados['indicados'] = Avaliacao.query.filter_by(usuario_id=current_user.id, resultado='Indicado para Teste Genetico').count()
+        dados['sem_indicacao'] = Avaliacao.query.filter_by(usuario_id=current_user.id, resultado='Sem Indicacao para Teste Genetico').count()
         dados['ultimas_avaliacoes'] = Avaliacao.query.filter_by(usuario_id=current_user.id).order_by(Avaliacao.id.desc()).limit(5).all()
     else:
         meus_pacientes = Paciente.query.filter_by(cpf=current_user.cpf).all()

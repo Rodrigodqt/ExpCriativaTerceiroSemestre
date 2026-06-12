@@ -1,9 +1,9 @@
 import csv
 import io
-from flask import Blueprint, render_template, abort, Response
+from flask import Blueprint, render_template, abort, Response, request
 from flask_login import login_required, current_user
 
-from modelos import Avaliacao, Paciente, ItemAvaliacao, Sintoma
+from modelos import db, Avaliacao, Paciente, ItemAvaliacao, Sintoma, Usuario
 
 relatorios_bp = Blueprint('relatorios', __name__, url_prefix='/relatorios')
 
@@ -22,20 +22,27 @@ def pode_ver_avaliacao(avaliacao):
 @relatorios_bp.route('/')
 @login_required
 def listar():
+    data_filtro = request.args.get('data')
+    usuario_filtro = request.args.get('usuario_id')
     if current_user.tipo == 'admin':
-        avaliacoes = Avaliacao.query.order_by(Avaliacao.id.desc()).all()
+        consulta = Avaliacao.query
+        if usuario_filtro:
+            consulta = consulta.filter_by(usuario_id=usuario_filtro)
     elif current_user.tipo == 'profissional':
-        avaliacoes = Avaliacao.query.filter_by(usuario_id=current_user.id).order_by(Avaliacao.id.desc()).all()
+        consulta = Avaliacao.query.filter_by(usuario_id=current_user.id)
     else:
         meus_pacientes = Paciente.query.filter_by(cpf=current_user.cpf).all()
         ids = []
         for p in meus_pacientes:
             ids.append(p.id)
-        if ids:
-            avaliacoes = Avaliacao.query.filter(Avaliacao.paciente_id.in_(ids)).order_by(Avaliacao.id.desc()).all()
-        else:
-            avaliacoes = []
-    return render_template('relatorios/listar.html', avaliacoes=avaliacoes)
+        consulta = Avaliacao.query.filter(Avaliacao.paciente_id.in_(ids))
+    if data_filtro:
+        consulta = consulta.filter(db.func.date(Avaliacao.data_avaliacao) == data_filtro)
+    avaliacoes = consulta.order_by(Avaliacao.id.desc()).all()
+    profissionais = []
+    if current_user.tipo == 'admin':
+        profissionais = Usuario.query.filter(Usuario.tipo.in_(['admin', 'profissional'])).order_by(Usuario.nome).all()
+    return render_template('relatorios/listar.html', avaliacoes=avaliacoes, profissionais=profissionais, data_filtro=data_filtro, usuario_filtro=usuario_filtro)
 
 
 @relatorios_bp.route('/<int:avaliacao_id>')

@@ -46,6 +46,7 @@
         <div>
             <h3 class="font-semibold mb-2">Dados da Avaliacao</h3>
             <p><span class="text-slate-500">Data:</span> {{ avaliacao.data_avaliacao.strftime('%d/%m/%Y %H:%M') }}</p>
+            <p><span class="text-slate-500">Profissional:</span> {{ avaliacao.usuario.nome }}</p>
             <p><span class="text-slate-500">Score Total:</span> <span class="font-bold">{{ avaliacao.score_total }}</span></p>
             <p><span class="text-slate-500">Limiar Aplicado:</span> {{ avaliacao.limiar_aplicado }}</p>
         </div>
