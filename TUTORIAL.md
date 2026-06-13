@@ -24,6 +24,18 @@ O administrador tem acesso total ao sistema.
 4. Para profissionais, informe CRM e especialidade (opcionais).
 5. Clique em **Salvar**.
 
+### Dar Acesso a um Paciente
+
+Para que um paciente consiga entrar no sistema e ver os proprios resultados, e preciso criar um usuario do tipo paciente com o MESMO CPF usado no cadastro do paciente:
+
+1. Cadastre o paciente normalmente (menu **Pacientes**), informando o CPF.
+2. No menu **Usuarios**, clique em **Novo Usuario**.
+3. Escolha o tipo **paciente** e informe o mesmo CPF do cadastro do paciente, digitado exatamente da mesma forma (com os mesmos pontos e tracos).
+4. Informe email e senha, que serao as credenciais de login do paciente.
+5. Ao entrar, o paciente vera apenas as avaliacoes vinculadas ao CPF dele.
+
+Se o CPF for digitado diferente nos dois cadastros, o paciente entra no sistema mas nao enxerga nenhum resultado.
+
 ### Cadastrar um Sintoma
 
 1. No menu, clique em **Sintomas**.
@@ -32,7 +44,7 @@ O administrador tem acesso total ao sistema.
 4. Deixe o peso feminino em branco quando o sintoma nao se aplica a mulheres.
 5. Clique em **Salvar**.
 
-O administrador tambem pode cadastrar pacientes e realizar avaliacoes, da mesma forma que o profissional.
+O administrador tambem pode cadastrar pacientes e realizar avaliacoes, da mesma forma que o profissional. No painel inicial, o administrador e o profissional veem um grafico com a distribuicao dos resultados (Indicado e Sem Indicacao).
 
 ## Perfil Profissional
 
@@ -44,6 +56,12 @@ O profissional cadastra pacientes e realiza avaliacoes. Ele visualiza apenas os 
 2. Clique em **Novo Paciente**.
 3. Preencha nome, data de nascimento, sexo, CPF, contato e historico familiar.
 4. Clique em **Salvar**.
+
+### Buscar um Paciente
+
+1. No menu, clique em **Pacientes**.
+2. Digite parte do nome ou do CPF no campo de busca e clique em **Buscar**.
+3. Clique em **Limpar** para voltar a lista completa.
 
 ### Realizar uma Avaliacao
 
@@ -69,6 +87,16 @@ O paciente apenas visualiza os resultados das proprias avaliacoes.
 1. Apos o login, o painel inicial mostra a lista **Meus Resultados**.
 2. Clique em **Ver resultado** para abrir o relatorio completo.
 3. O paciente nao pode cadastrar nem editar nada.
+
+## Consultar Relatorios
+
+1. No menu, clique em **Relatorios**.
+2. A lista mostra as avaliacoes com data, score e resultado.
+3. Use o filtro de **Data** para ver apenas as avaliacoes de um dia especifico.
+4. O administrador tambem pode filtrar por **Profissional**, escolhendo o responsavel na lista.
+5. Clique em **Ver detalhes** para abrir o relatorio completo.
+
+O profissional ve apenas os relatorios das avaliacoes que ele mesmo realizou. O administrador ve todos.
 
 ## Exportar o Relatorio
 
