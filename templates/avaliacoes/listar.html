@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-{% block titulo %}Avaliacoes - IBK{% endblock %}
+{% block titulo %}Avaliações - IBK{% endblock %}
 {% block conteudo %}
 <div class="flex items-center justify-between mb-6">
-    <h1 class="text-2xl font-bold">Avaliacoes</h1>
-    <a href="{{ url_for('avaliacoes.selecionar') }}" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Nova Avaliacao</a>
+    <h1 class="text-2xl font-bold">Avaliações</h1>
+    <a href="{{ url_for('avaliacoes.selecionar') }}" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Nova Avaliação</a>
 </div>
 
 <div class="bg-white rounded-lg shadow overflow-x-auto">
@@ -15,7 +15,7 @@
                 <th class="px-4 py-2">Score</th>
                 <th class="px-4 py-2">Limiar</th>
                 <th class="px-4 py-2">Resultado</th>
-                <th class="px-4 py-2">Acoes</th>
+                <th class="px-4 py-2">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -29,20 +29,20 @@
                     {% if avaliacao.resultado == 'Indicado para Teste Genetico' %}
                     <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-semibold">Indicado</span>
                     {% else %}
-                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-semibold">Sem Indicacao</span>
+                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-semibold">Sem Indicação</span>
                     {% endif %}
                 </td>
                 <td class="px-4 py-2">
                     <div class="flex flex-wrap gap-2">
-                        <a href="{{ url_for('relatorios.detalhe', avaliacao_id=avaliacao.id) }}" class="text-blue-700 hover:underline">Relatorio</a>
-                        <form method="POST" action="{{ url_for('avaliacoes.excluir', avaliacao_id=avaliacao.id) }}" onsubmit="return confirm('Deseja excluir esta avaliacao?');">
+                        <a href="{{ url_for('relatorios.detalhe', avaliacao_id=avaliacao.id) }}" class="text-blue-700 hover:underline">Relatório</a>
+                        <form method="POST" action="{{ url_for('avaliacoes.excluir', avaliacao_id=avaliacao.id) }}" onsubmit="return confirm('Deseja excluir esta avaliação?');">
                             <button type="submit" class="text-red-700 hover:underline">Excluir</button>
                         </form>
                     </div>
                 </td>
             </tr>
             {% else %}
-            <tr><td colspan="6" class="px-4 py-4 text-slate-500">Nenhuma avaliacao registrada.</td></tr>
+            <tr><td colspan="6" class="px-4 py-4 text-slate-500">Nenhuma avaliação registrada.</td></tr>
             {% endfor %}
         </tbody>
     </table>

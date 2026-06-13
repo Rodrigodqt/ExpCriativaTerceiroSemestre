@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-{% block titulo %}Usuarios - IBK{% endblock %}
+{% block titulo %}Usuários - IBK{% endblock %}
 {% block conteudo %}
 <div class="flex items-center justify-between mb-6">
-    <h1 class="text-2xl font-bold">Usuarios</h1>
-    <a href="{{ url_for('usuarios.novo') }}" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-600">Novo Usuario</a>
+    <h1 class="text-2xl font-bold">Usuários</h1>
+    <a href="{{ url_for('usuarios.novo') }}" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-600">Novo Usuário</a>
 </div>
 
 <div class="bg-white rounded-lg shadow overflow-x-auto">
@@ -14,7 +14,7 @@
                 <th class="px-4 py-2">Email</th>
                 <th class="px-4 py-2">Tipo</th>
                 <th class="px-4 py-2">CRM</th>
-                <th class="px-4 py-2">Acoes</th>
+                <th class="px-4 py-2">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -27,14 +27,14 @@
                 <td class="px-4 py-2">
                     <div class="flex flex-wrap gap-2">
                         <a href="{{ url_for('usuarios.editar', usuario_id=usuario.id) }}" class="text-slate-700 hover:underline">Editar</a>
-                        <form method="POST" action="{{ url_for('usuarios.excluir', usuario_id=usuario.id) }}" onsubmit="return confirm('Deseja remover este usuario?');">
+                        <form method="POST" action="{{ url_for('usuarios.excluir', usuario_id=usuario.id) }}" onsubmit="return confirm('Deseja remover este usuário?');">
                             <button type="submit" class="text-red-700 hover:underline">Excluir</button>
                         </form>
                     </div>
                 </td>
             </tr>
             {% else %}
-            <tr><td colspan="5" class="px-4 py-4 text-slate-500">Nenhum usuario cadastrado.</td></tr>
+            <tr><td colspan="5" class="px-4 py-4 text-slate-500">Nenhum usuário cadastrado.</td></tr>
             {% endfor %}
         </tbody>
     </table>

@@ -89,7 +89,7 @@ def nova(paciente_id):
             db.session.add(item)
         db.session.commit()
 
-        flash('Avaliacao registrada com sucesso.', 'sucesso')
+        flash('Avaliação registrada com sucesso.', 'sucesso')
         return redirect(url_for('relatorios.detalhe', avaliacao_id=avaliacao.id))
 
     return render_template('avaliacoes/nova.html', paciente=paciente, sintomas=sintomas)
@@ -105,5 +105,5 @@ def excluir(avaliacao_id):
         abort(403)
     db.session.delete(avaliacao)
     db.session.commit()
-    flash('Avaliacao excluida com sucesso.', 'sucesso')
+    flash('Avaliação excluída com sucesso.', 'sucesso')
     return redirect(url_for('avaliacoes.listar'))

@@ -17,12 +17,12 @@ def login():
         usuario = Usuario.query.filter_by(email=email).first()
         if usuario and check_password_hash(usuario.senha_hash, senha):
             if not usuario.ativo:
-                flash('Usuario inativo. Procure o administrador.', 'erro')
+                flash('Usuário inativo. Procure o administrador.', 'erro')
                 return redirect(url_for('auth.login'))
             login_user(usuario)
             return redirect(url_for('dashboard'))
         else:
-            flash('Email ou senha invalidos.', 'erro')
+            flash('Email ou senha inválidos.', 'erro')
     return render_template('login.html')
 
 
@@ -46,7 +46,7 @@ def perfil():
                 db.session.commit()
                 flash('Dados e senha atualizados com sucesso.', 'sucesso')
             else:
-                flash('Senha atual incorreta. A senha nao foi alterada.', 'erro')
+                flash('Senha atual incorreta. A senha não foi alterada.', 'erro')
         else:
             db.session.commit()
             flash('Dados atualizados com sucesso.', 'sucesso')

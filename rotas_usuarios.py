@@ -25,7 +25,7 @@ def novo():
         email = request.form.get('email')
         existe = Usuario.query.filter_by(email=email).first()
         if existe:
-            flash('Ja existe um usuario com este email.', 'erro')
+            flash('Já existe um usuário com este email.', 'erro')
             return render_template('usuarios/form.html', usuario=None)
         usuario = Usuario(
             nome=request.form.get('nome'),
@@ -39,7 +39,7 @@ def novo():
         )
         db.session.add(usuario)
         db.session.commit()
-        flash('Usuario cadastrado com sucesso.', 'sucesso')
+        flash('Usuário cadastrado com sucesso.', 'sucesso')
         return redirect(url_for('usuarios.listar'))
     return render_template('usuarios/form.html', usuario=None)
 
@@ -61,7 +61,7 @@ def editar(usuario_id):
         if nova_senha:
             usuario.senha_hash = generate_password_hash(nova_senha)
         db.session.commit()
-        flash('Usuario atualizado com sucesso.', 'sucesso')
+        flash('Usuário atualizado com sucesso.', 'sucesso')
         return redirect(url_for('usuarios.listar'))
     return render_template('usuarios/form.html', usuario=usuario)
 
@@ -73,9 +73,9 @@ def excluir(usuario_id):
         abort(403)
     usuario = Usuario.query.get_or_404(usuario_id)
     if usuario.id == current_user.id:
-        flash('Voce nao pode remover o proprio usuario.', 'erro')
+        flash('Você não pode remover o próprio usuário.', 'erro')
         return redirect(url_for('usuarios.listar'))
     usuario.ativo = False
     db.session.commit()
-    flash('Usuario removido com sucesso.', 'sucesso')
+    flash('Usuário removido com sucesso.', 'sucesso')
     return redirect(url_for('usuarios.listar'))

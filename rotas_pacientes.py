@@ -40,7 +40,7 @@ def novo():
     if request.method == 'POST':
         nome = request.form.get('nome')
         if not nome:
-            flash('O nome do paciente e obrigatorio.', 'erro')
+            flash('O nome do paciente é obrigatório.', 'erro')
             return render_template('pacientes/form.html', paciente=None)
         paciente = Paciente(
             nome=nome,

@@ -58,7 +58,7 @@ def criar_app():
     db.init_app(app)
     login_manager.init_app(app)
     login_manager.login_view = 'auth.login'
-    login_manager.login_message = 'Faca login para acessar esta pagina.'
+    login_manager.login_message = 'Faça login para acessar esta página.'
 
     app.register_blueprint(auth)
     app.register_blueprint(pacientes_bp)

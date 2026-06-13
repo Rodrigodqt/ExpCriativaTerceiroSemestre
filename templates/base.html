@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block titulo %}IBK - Avaliacao X Fragil{% endblock %}</title>
+    <title>{% block titulo %}IBK - Avaliação X Frágil{% endblock %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
 </head>
@@ -18,15 +18,15 @@
             </div>
             <button onclick="document.getElementById('menu').classList.toggle('hidden')" class="md:hidden border border-blue-300 rounded px-3 py-1">Menu</button>
             <div id="menu" class="hidden md:flex md:items-center gap-4 absolute md:static top-16 left-0 right-0 bg-blue-800 md:bg-transparent flex-col md:flex-row p-4 md:p-0 z-10">
-                <a href="{{ url_for('dashboard') }}" class="hover:text-blue-200">Inicio</a>
+                <a href="{{ url_for('dashboard') }}" class="hover:text-blue-200">Início</a>
                 {% if current_user.tipo in ['admin', 'profissional'] %}
                 <a href="{{ url_for('pacientes.listar') }}" class="hover:text-blue-200">Pacientes</a>
-                <a href="{{ url_for('avaliacoes.listar') }}" class="hover:text-blue-200">Avaliacoes</a>
+                <a href="{{ url_for('avaliacoes.listar') }}" class="hover:text-blue-200">Avaliações</a>
                 {% endif %}
-                <a href="{{ url_for('relatorios.listar') }}" class="hover:text-blue-200">Relatorios</a>
+                <a href="{{ url_for('relatorios.listar') }}" class="hover:text-blue-200">Relatórios</a>
                 {% if current_user.tipo == 'admin' %}
                 <a href="{{ url_for('sintomas.listar') }}" class="hover:text-blue-200">Sintomas</a>
-                <a href="{{ url_for('usuarios.listar') }}" class="hover:text-blue-200">Usuarios</a>
+                <a href="{{ url_for('usuarios.listar') }}" class="hover:text-blue-200">Usuários</a>
                 {% endif %}
                 <a href="{{ url_for('auth.perfil') }}" class="hover:text-blue-200">Perfil</a>
                 <a href="{{ url_for('auth.logout') }}" class="bg-blue-600 px-3 py-1 rounded hover:bg-blue-500 text-center">Sair</a>
