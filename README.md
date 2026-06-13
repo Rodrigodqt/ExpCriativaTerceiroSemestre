@@ -1,8 +1,8 @@
-# Plataforma de Avaliacao da Sindrome do X Fragil - IBK
+# Plataforma de Avaliação da Síndrome do X Frágil - IBK
 
-Sistema web desenvolvido para o Instituto Buko Kaesemodel (IBK) com o objetivo de apoiar a triagem da Sindrome do X Fragil. A plataforma permite o cadastro de pacientes, a realizacao de avaliacoes baseadas em uma lista de sintomas com pesos e a geracao de um relatorio que indica (ou nao) o encaminhamento para teste genetico.
+Sistema web desenvolvido para o Instituto Buko Kaesemodel (IBK) com o objetivo de apoiar a triagem da Síndrome do X Frágil. A plataforma permite o cadastro de pacientes, a realização de avaliações baseadas em uma lista de sintomas com pesos e a geração de um relatório que indica (ou não) o encaminhamento para teste genético.
 
-Projeto desenvolvido na disciplina **Experiencia Criativa** do 3o semestre de Bacharelado em Ciencia da Computacao (BCC).
+Projeto desenvolvido na disciplina **Experiência Criativa** do 3º semestre de Bacharelado em Ciência da Computação (BCC).
 
 ## Video Explicativo
 
@@ -13,35 +13,35 @@ Demonstracao do funcionamento e uso do sistema: https://youtu.be/TUVVk8vB2Fk
 - Rodrigo Rodrigues Ferreira
 - Gabriel Pacheco Benin
 - Gabriel Moura
-- Daniel
+- Daniel Costa Baptista
 
 ## Tecnologias Utilizadas
 
 - Python 3.11
 - Flask (framework web)
 - Flask-SQLAlchemy (ORM)
-- Flask-Login (autenticacao e sessao)
-- PyMySQL (driver de conexao com o MySQL)
+- Flask-Login (autenticação e sessão)
+- PyMySQL (driver de conexão com o MySQL)
 - MySQL 8.0 (banco de dados)
 - Jinja2 (templates server-side)
-- Tailwind CSS via CDN (estilizacao)
-- Docker e Docker Compose (containerizacao)
+- Tailwind CSS via CDN (estilização)
+- Docker e Docker Compose (containerização)
 
 ## Perfis de Acesso
 
-- **admin**: acesso total. Cadastra sintomas, usuarios e pacientes e visualiza todas as avaliacoes.
-- **profissional**: cadastra pacientes, realiza avaliacoes e visualiza apenas os pacientes e relatorios que cadastrou.
-- **paciente**: visualiza apenas os resultados das proprias avaliacoes e pode exportar o relatorio em CSV ou PDF (impressao).
+- **admin**: acesso total. Cadastra sintomas, usuários e pacientes e visualiza todas as avaliações.
+- **profissional**: cadastra pacientes, realiza avaliações e visualiza apenas os pacientes e relatórios que cadastrou.
+- **paciente**: visualiza apenas os resultados das proprias avaliações e pode exportar o relatório em CSV ou PDF (impressão).
 
 ## Regras de Negocio
 
-- O score e a soma dos pesos dos sintomas marcados na avaliacao.
+- O score e a soma dos pesos dos sintomas marcados na avaliação.
 - O peso depende do sexo do paciente (peso masculino ou peso feminino).
-- Homens: resultado **Indicado para Teste Genetico** quando o score for maior que 0.56.
-- Mulheres: resultado **Indicado para Teste Genetico** quando o score for maior que 0.55.
-- Mulheres nao visualizam o sintoma Macro-orquidismo no checklist.
-- O calculo do score e do resultado e feito obrigatoriamente no backend.
-- A exclusao de pacientes, usuarios e sintomas e logica (campo ativo = falso). As avaliacoes podem ser excluidas fisicamente.
+- Homens: resultado **Indicado para Teste Genético** quando o score for maior que 0.56.
+- Mulheres: resultado **Indicado para Teste Genético** quando o score for maior que 0.55.
+- Mulheres não visualizam o sintoma Macro-orquidismo no checklist.
+- O cálculo do score e do resultado e feito obrigatoriamente no backend.
+- A exclusão de pacientes, usuários e sintomas e lógica (campo ativo = falso). As avaliações podem ser excluidas fisicamente.
 
 ## Como Rodar com Docker
 

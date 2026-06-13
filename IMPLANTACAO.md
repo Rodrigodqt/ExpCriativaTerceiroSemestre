@@ -1,6 +1,6 @@
 # Guia de Implantacao
 
-Este documento descreve como implantar e configurar a Plataforma de Avaliacao da Sindrome do X Fragil do IBK.
+Este documento descreve como implantar e configurar a Plataforma de Avaliação da Síndrome do X Frágil do IBK.
 
 ## Requisitos
 
@@ -48,7 +48,7 @@ docker compose down -v
 
 ## Variaveis de Ambiente
 
-As variaveis sao definidas no arquivo `docker-compose.yml`:
+As variaveis são definidas no arquivo `docker-compose.yml`:
 
 | Variavel | Descricao | Valor padrao |
 |----------|-----------|--------------|
@@ -97,7 +97,7 @@ python app.py
 
 ## Solucao de Problemas
 
-- **A aplicacao nao conecta ao banco**: aguarde alguns segundos, pois o MySQL pode demorar para iniciar. A aplicacao tenta reconectar automaticamente.
+- **A aplicacao não conecta ao banco**: aguarde alguns segundos, pois o MySQL pode demorar para iniciar. A aplicacao tenta reconectar automaticamente.
 - **Porta em uso**: altere o mapeamento de portas no `docker-compose.yml` (ex: trocar 5000 por outra porta).
 - **Erro de autenticacao do MySQL**: confirme se a senha em DATABASE_URL e a mesma de MYSQL_ROOT_PASSWORD.
 - **Dados antigos atrapalhando**: use `docker compose down -v` para recriar o banco do zero.
