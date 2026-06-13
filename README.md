@@ -4,6 +4,10 @@ Sistema web desenvolvido para o Instituto Buko Kaesemodel (IBK) com o objetivo d
 
 Projeto desenvolvido na disciplina **Experiencia Criativa** do 3o semestre de Bacharelado em Ciencia da Computacao (BCC).
 
+## Video Explicativo
+
+Demonstracao do funcionamento e uso do sistema: https://youtu.be/TUVVk8vB2Fk
+
 ## Integrantes do Grupo
 
 - Rodrigo Rodrigues Ferreira
